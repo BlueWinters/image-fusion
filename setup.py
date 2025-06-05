@@ -7,7 +7,6 @@ from Cython.Build import cythonize
 
 """
 build command
->>> cd core/xface/extension
 >>> python setup.py build_ext --inplace
 >>> ls *.so
 """
@@ -19,7 +18,7 @@ setup(
     ext_modules=[
         Extension(
             name='fusion_cython',
-            sources=["fusion/fusion_cython.pyx", "fusion/fusion.cpp"],
+            sources=["source/fusion_cython.pyx", "source/fusion.cpp"],
             language='c++',
             extra_compile_args=["-fopenmp", "-msse2", "-mavx2"],
             extra_link_args=["-fopenmp", "-msse2", "-mavx2"],
