@@ -22,8 +22,8 @@ setup(
             language='c++',
             extra_compile_args=["-fopenmp", "-msse2", "-mavx2"],
             extra_link_args=["-fopenmp", "-msse2", "-mavx2"],
-            # extra_compile_args=["-fopenmp", "-mavx512f"],
-            # extra_link_args=["-fopenmp", "-mavx512f"],
+            # extra_compile_args=["-fopenmp", "-msse2"],
+            # extra_link_args=["-fopenmp", "-msse2"],
             include_dirs=[numpy.get_include()],
         )
     ],
