@@ -16,16 +16,20 @@ python benchmark.py
 
 <div align="center">
 
-
-| method| implement     | time (ns) |
-|:------|:--------------|:----------|
-| openmp| native openmp | 391       |
-| sse2  | sse2+openmp   | 177       |
-| avx2  | avx2+openmp   | 41        |
-| numpy | pure numpy    | 8916      |
-| numba | numpy+numba   | 5406      |
-| native| native cpp    | 3279      |
-
+| method| implement     | 256x256   | 384x384   | 512x512   | 768x768   | 1024x1024 | 2048x2048 |
+|:------|:--------------|:----------|:----------|:----------|:----------|:----------|:----------|
+| avx2  | avx2+openmp   | 9         | 16        | 28        | 90        | 185       | 2675      |
+| sse2  | sse2+openmp   | 25        | 54        | 95        | 213       | 373       | 2084      |
+| openmp| native openmp | 56        | 124       | 215       | 471       | 880       | 3600      |
+| native| native cpp    | 467       | 1008      | 1766      | 3922      | 7193      | 28044     |
+| numba | numpy+numba   | 5338      | 7741      | 7779      | 7970      | 8752      | 16545     |
+| numpy | pure numpy    | 951       | 2689      | 4662      | 10787     | 20479     | 88348     |
 
 </div>
 
+
+<div align="center">
+
+![Performance](asset/performance.png)
+
+</div>

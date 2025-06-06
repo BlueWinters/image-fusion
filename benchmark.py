@@ -56,7 +56,7 @@ if __name__ == '__main__':
     bgr_t = np.ascontiguousarray(np.transpose(bgr, (2, 0, 1)))
     mat_t = np.ascontiguousarray(np.transpose(one, (2, 0, 1)))
     out3 = functionWrapper(fusion_cython.fuseImage_AVX2_CHW, 'avx2')(bgr_t, mat_t, mat)
-    cv2.imwrite('output_avx2.png', np.transpose(out3, (1,2,0)))
+    cv2.imwrite('output_avx2.png', np.transpose(out3, (1, 2, 0)))
 
     out5 = functionWrapper(fuseImage_Numpy, 'numpy')(bgr, one, mat)
     cv2.imwrite('output_numpy.png', out5)
