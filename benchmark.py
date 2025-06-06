@@ -38,8 +38,8 @@ def fuseImage_Numba(matrix_a, matrix_b, matrix_c):
 
 
 if __name__ == '__main__':
-    bgr = np.ascontiguousarray(cv2.imread('input.png'))
-    mat = np.ascontiguousarray(cv2.imread('alpha.png', -1))
+    bgr = np.ascontiguousarray(cv2.imread('asset/input.png'))
+    mat = np.ascontiguousarray(cv2.imread('asset/alpha.png', -1))
 
     # bgr = cv2.resize(bgr, (1400, 1400))
     # mat = cv2.resize(mat, (1400, 1400))

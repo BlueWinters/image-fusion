@@ -1,7 +1,17 @@
 # Image-Fusion
 Image fusion implementation in C++ and assembly
 
+## Build
+```python
+python setup.py build_ext --inplace
+```
+
 ## Performance
+- note: the resolution of the test image is 700x700 which can be found in `fold/asset`
+- run the following code to test the performance: 
+```python
+python benchmark.py
+```
 
 
 <div align="center">
