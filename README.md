@@ -1,13 +1,22 @@
 # Image-Fusion
 Image fusion implementation in C++ and assembly
 
+
+## Introduction
+Image-Fusion is a process of replacing the image background based on image matting. By using a formal mathematical expression we can describe this process, namely:
+```math
+I_{\text{result}} = I_{\text{source}} \cdot \alpha + I_{\text{target}} \cdot (1 - \alpha)
+```
+Generally, the $ I_{\text{target}} $ is a pure white image with the same resolution as $ I_{\text{source}} $. After the image fusion process, the background of the original image can be replaced with the specified image which result can be found in `asset`.
+
+
 ## Build
 ```python
 python setup.py build_ext --inplace
 ```
 
 ## Performance
-- note: the resolution of the test image is 700x700 which can be found in `fold/asset`
+- note: the resolution of the test image is 700x700 which can be found in `asset`
 - run the following code to test the performance: 
 ```python
 python benchmark.py
