@@ -73,12 +73,15 @@ def fuseImage_Native(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_h, src_w, src_c), dtype=np.uint8)
     cdef int flag = fuseImageByMask_Native(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
@@ -97,12 +100,15 @@ def fuseImage_OpenMP(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_h, src_w, src_c), dtype=np.uint8)
     cdef int flag = fuseImageByMask_OpenMP(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
@@ -121,12 +127,15 @@ def fuseImage_SSE2(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_h, src_w, src_c), dtype=np.uint8)
     cdef int flag = fuseImageByMask_SSE2(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
@@ -145,12 +154,15 @@ def fuseImage_AVX2_CHW(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_c, src_h, src_w), dtype=np.uint8)
     cdef int flag = fuseImageByMask_AVX2_CHW(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
@@ -169,12 +181,15 @@ def fuseImage_HWC(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_h, src_w, src_c), dtype=np.uint8)
     cdef int flag = fuseImageByMask_HWC(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
@@ -193,12 +208,15 @@ def fuseImage_CHW(
     if src_h != tar_h or src_w != tar_w:
         raise ValueError("source_bgr and target_bgr shape mismatch")
     if src_c != 3 or tar_c != 3:
-        raise ValueError("source_bgr or target_bgr must have 3 channels") 
+        raise ValueError("source_bgr or target_bgr must have 3 channels")
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] source_bgr_c = np.ascontiguousarray(source_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=3, mode="c"] target_bgr_c = np.ascontiguousarray(target_bgr)
+    cdef np.ndarray[np.uint8_t, ndim=2, mode="c"] mask_c = np.ascontiguousarray(mask)
     cdef np.ndarray[np.uint8_t, ndim=3] fusion = np.empty((src_c, src_h, src_w), dtype=np.uint8)
     cdef int flag = fuseImageByMask_CHW(
-        <const unsigned char*>source_bgr.data,
-        <const unsigned char*>target_bgr.data,
-        <const unsigned char*>mask.data,
+        <const unsigned char*>source_bgr_c.data,
+        <const unsigned char*>target_bgr_c.data,
+        <const unsigned char*>mask_c.data,
         <unsigned char*>fusion.data,
         src_h, src_w, src_c
     )
